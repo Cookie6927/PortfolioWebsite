@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/bchiang7/v4"
   },
+  "resolutions": {
+    "graphql": "15.10.1"
+  },
   "keywords": [
     "gatsby"
   ],
