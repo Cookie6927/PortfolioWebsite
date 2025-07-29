@@ -187,6 +187,26 @@ const Projects = () => {
           }
         }
       }
+      certificates: allMarkdownRemark(
+        filter: {
+          fileAbsolutePath: { regex: "/content/certificates/" }
+          frontmatter: { showInCertificates: { eq: true } }
+        }
+        sort: { fields: [frontmatter___date], order: DESC }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              certificateName
+              issuer
+              link
+              date
+              tech
+            }
+            html
+          }
+        }
+      }
     }
   `);
 

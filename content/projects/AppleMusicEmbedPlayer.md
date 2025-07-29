@@ -1,14 +1,15 @@
 ---
-date: '2017-12-01'
-title: 'Apple Music Embeddable Web Player Widget'
+date: '2025-07-01'
+title: 'Salesforce Admin Certification'
 github: ''
-external: ''
+external: 'https://trailhead.salesforce.com/en/credentials/administrator'
 tech:
-  - MusicKit.js
-  - JS
-  - SCSS
-company: 'Apple'
+  - Salesforce
+  - CRM
+  - Flows
+  - Apex (Basic)
+company: 'Salesforce'
 showInProjects: false
 ---
 
-Embeddable web player widget for Apple Music that lets users log in and listen to full song playback in the browser leveraging [MusicKit.js](https://developer.apple.com/documentation/musickitjs). Read more about this project on [9to5Mac](https://9to5mac.com/2018/06/03/apple-music-embeddable-web-player-listen-browser/).
+Earned the Salesforce Certified Administrator credential to deepen my understanding of Salesforce CRM capabilities. Focused on automating business processes using Flows, managing data securely, and customizing user experiences. The certification validates my hands-on knowledge in managing users, creating reports and dashboards, and maintaining system integrity within the Salesforce ecosystem.

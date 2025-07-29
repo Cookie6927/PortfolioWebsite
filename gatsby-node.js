@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
+require('events').EventEmitter.defaultMaxListeners = 20;
+
 const path = require('path');
 const _ = require('lodash');
 
