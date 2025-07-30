@@ -2,7 +2,7 @@
   <img alt="Logo" src="https://github.com/Cookie6927/PortfolioWebsite/blob/main/static/og.png" width="100" />
 </div>
 
-<h1 align="center">brittanychiang.com - v4</h1>
+<h1 align="center">ojas25.vercel.app </h1>
 
 <p align="center">
   A customized version of <a href="https://brittanychiang.com/" target="_blank">Brittany Chiang's</a> portfolio.<br/>
