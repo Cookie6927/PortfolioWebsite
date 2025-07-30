@@ -2,7 +2,7 @@
 title: 'Salesforce AI Associate Certified'
 date: '2024-06-01'
 external: 'https://www.salesforce.com/trailblazer/ojas27'
-image: '/Certificates/images/salesforceAIassociate.png'
+image: '/Certificates/images/salesforceAiAssociate.png'
 ---
 
 Successfully completed the [Salesforce AI Associate Certification](https://www.salesforce.com/trailblazer/ojas27).
