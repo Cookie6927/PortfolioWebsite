@@ -1,37 +1,29 @@
 <div align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/bchiang7/v4/main/src/images/logo.png" width="100" />
+  <img alt="Logo" src="https://github.com/Cookie6927/PortfolioWebsite/blob/main/static/og.png" width="100" />
 </div>
-<h1 align="center">
-  brittanychiang.com - v4
-</h1>
+
+<h1 align="center">brittanychiang.com - v4</h1>
+
 <p align="center">
-  The fourth iteration of <a href="https://brittanychiang.com" target="_blank">brittanychiang.com</a> built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a> and hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>
-</p>
-<p align="center">
-  Previous iterations:
-  <a href="https://github.com/bchiang7/v1" target="_blank">v1</a>,
-  <a href="https://github.com/bchiang7/v2" target="_blank">v2</a>,
-  <a href="https://github.com/bchiang7/bchiang7.github.io" target="_blank">v3</a>
-</p>
-<p align="center">
-  <a href="https://app.netlify.com/sites/brittanychiang/deploys" target="_blank">
-    <img src="https://api.netlify.com/api/v1/badges/1963b488-7b78-48c9-9e2d-6fb5e47ab3af/deploy-status" alt="Netlify Status" />
-  </a>
+  A customized version of <a href="https://brittanychiang.com/" target="_blank">Brittany Chiang's</a> portfolio.<br/>
+  This version is live at <a href="https://ojas25.vercel.app" target="_blank">ojas25.vercel.app</a> <br/>
+  Built using <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a> and hosted on <a href="https://www.vercel.com/" target="_blank">Vercel</a>
 </p>
 
-![demo](https://raw.githubusercontent.com/bchiang7/v4/main/src/images/demo.png)
+---
 
-## 🚨 Forking this repo (please read!)
+![Demo](https://github.com/Cookie6927/PortfolioWebsite/blob/main/static/og.png)
 
-Many people have contacted me asking me if they can use this code for their own website, and the answer to that question is usually **yes, with attribution**.
+## ⚠️ About This Fork
 
-I value keeping my site open source, but as you all know, _**plagiarism is bad**_. It's always disheartening whenever I find that someone has copied my site without giving me credit. I spent a non-trivial amount of effort building and designing this iteration of my website, and I am proud of it! All I ask of you all is to not claim this effort as your own.
+This is a modified version of Brittany Chiang’s personal site. I've made some starter-friendly adjustments, including:
 
-Please also note that I did not build this site with the intention of it being a starter theme, so if you have questions about implementation, please refer to the [Gatsby docs](https://www.gatsbyjs.org/docs/).
+- Removed the job section for simplicity.
+- Planning to add a **certifications section** in the next iteration.
+  
+All credits for the original design and structure go to [Brittany Chiang](https://brittanychiang.com/). If you use this version, please consider linking back to her site. 🙏
 
-### TL;DR
-
-Yes, you can fork this repo. Please give me proper credit by linking back to [brittanychiang.com](https://brittanychiang.com). Thanks!
+---
 
 ## 🛠 Installation & Set Up
 
