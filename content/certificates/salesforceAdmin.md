@@ -4,6 +4,6 @@ date: '2024-06-01'
 external: 'https://coursera.org/verify/abc123'
 ---
 
-Successfully completed the [Google Cybersecurity Certificate](https://coursera.org/learn/google-cybersecurity).
+Successfully completed the [Salesforce Admin Certification](https://www.salesforce.com/trailblazer/ojas27).
 
-Covered topics: Threats, SOC tools, SIEM, and Risk Management.
+Covered topics: Salesforce Flow, Apex, Reports & Dashboards, Security & Access Management.
