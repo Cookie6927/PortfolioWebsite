@@ -1,7 +1,8 @@
 ---
 title: 'Salesforce Admin Certified'
 date: '2024-06-01'
-external: 'https://www.salesforce.com/trailblazer/ojas27)'
+external: 'certificates/images/salesforceAdmin.png'
+image: '/certificates/images/salesforceAdmin.png'
 ---
 
 Successfully completed the [Salesforce Admin Certification](https://www.salesforce.com/trailblazer/ojas27).

@@ -14,6 +14,29 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+
+  // Style for Modal component
+  .modal-content {
+  text-align: center;
+  
+  
+}
+
+.modal-title {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  box-shadow: 0 10px 30px -15px var(--navy-shadow);
+}
+
+.modal-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px -15px var(--navy-shadow); /* optional: shadow */
+}
+
+
   *,
   *:before,
   *:after {

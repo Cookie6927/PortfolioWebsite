@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Modal from '@components/Modal';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
@@ -171,6 +172,19 @@ const Projects = () => {
 
   const [showMore] = useState(false);
   const [showCertificates, setShowCertificates] = useState(false);
+  //Image Modal State
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = certificate => {
+    setSelectedCertificate(certificate);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedCertificate(null);
+    setIsModalOpen(false);
+  };
 
   const GRID_LIMIT = 6;
 
@@ -210,6 +224,7 @@ const Projects = () => {
             frontmatter {
               title
               external
+              image
             }
             html
           }
@@ -269,33 +284,27 @@ const Projects = () => {
 
   const certificateInner = node => {
     const { frontmatter, html } = node;
-    const { title, external } = frontmatter;
+    const { title, image } = frontmatter;
 
     return (
-      <div className="project-inner">
+      <div
+        className="project-inner"
+        role="button"
+        tabIndex={0}
+        onClick={() => openModal({ title, image: image })}
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            openModal({ title, image: image });
+          }
+        }}
+        style={{ cursor: 'pointer' }}>
         <header>
           <div className="project-top">
             <div className="folder">
               <Icon name="Folder" />
             </div>
-            <div className="project-links">
-              {external && (
-                <a
-                  href={external}
-                  aria-label="External Link"
-                  className="external"
-                  target="_blank"
-                  rel="noreferrer">
-                  <Icon name="External" />
-                </a>
-              )}
-            </div>
           </div>
-          <h3 className="project-title">
-            <a href={external} target="_blank" rel="noreferrer">
-              {title}
-            </a>
-          </h3>
+          <h3 className="project-title">{title}</h3>
           <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
         </header>
       </div>
@@ -344,6 +353,20 @@ const Projects = () => {
       <button className="more-button" onClick={() => setShowCertificates(!showCertificates)}>
         {showCertificates ? 'Show Projects' : 'Credential Vault'}
       </button>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        {selectedCertificate && (
+          <div className="modal-content">
+            <h3 className="modal-title">{selectedCertificate.title}</h3>
+            <img
+              src={selectedCertificate.image}
+              alt={selectedCertificate.title}
+              loading="lazy"
+              className="modal-image"
+            />
+          </div>
+        )}
+      </Modal>
     </StyledProjectsSection>
   );
 };
