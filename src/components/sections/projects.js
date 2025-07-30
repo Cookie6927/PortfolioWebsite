@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { Icon } from '@components/icons';
-import { usePrefersReducedMotion } from '@hooks';
 
 const StyledProjectsSection = styled.section`
   display: flex;
@@ -166,6 +165,21 @@ const StyledProject = styled.li`
 `;
 
 const Projects = () => {
+  const revealTitle = useRef(null);
+  const revealProjects = useRef([]);
+  const revealArchiveLink = useRef(null);
+
+  const [showMore] = useState(false);
+  const [showCertificates, setShowCertificates] = useState(false);
+
+  const GRID_LIMIT = 6;
+
+  useEffect(() => {
+    sr.reveal(revealTitle.current, srConfig());
+    sr.reveal(revealArchiveLink.current, srConfig());
+    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+  }, []);
+
   const data = useStaticQuery(graphql`
     query {
       projects: allMarkdownRemark(
@@ -187,33 +201,26 @@ const Projects = () => {
           }
         }
       }
+      certificates: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/content/certificates/" } }
+        sort: { fields: [frontmatter___date], order: DESC }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              title
+              external
+            }
+            html
+          }
+        }
+      }
     }
   `);
 
-  const [showMore, setShowMore] = useState(false);
-  const revealTitle = useRef(null);
-  const revealArchiveLink = useRef(null);
-  const revealProjects = useRef([]);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealArchiveLink.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
-
-  const GRID_LIMIT = 6;
-  const projects = data.projects.edges.filter(({ node }) => node);
-  const firstSix = projects.slice(0, GRID_LIMIT);
-  const projectsToShow = showMore ? projects : firstSix;
-
   const projectInner = node => {
     const { frontmatter, html } = node;
-    const { github, external, title, tech } = frontmatter;
+    const { title, tech, github, external } = frontmatter;
 
     return (
       <div className="project-inner">
@@ -240,21 +247,18 @@ const Projects = () => {
               )}
             </div>
           </div>
-
           <h3 className="project-title">
-            <a href={external} target="_blank" rel="noreferrer">
+            <a href={external || github} target="_blank" rel="noreferrer">
               {title}
             </a>
           </h3>
-
           <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
         </header>
-
         <footer>
           {tech && (
             <ul className="project-tech-list">
-              {tech.map((tech, i) => (
-                <li key={i}>{tech}</li>
+              {tech.map((techItem, i) => (
+                <li key={i}>{techItem}</li>
               ))}
             </ul>
           )}
@@ -263,47 +267,82 @@ const Projects = () => {
     );
   };
 
+  const certificateInner = node => {
+    const { frontmatter, html } = node;
+    const { title, external } = frontmatter;
+
+    return (
+      <div className="project-inner">
+        <header>
+          <div className="project-top">
+            <div className="folder">
+              <Icon name="Folder" />
+            </div>
+            <div className="project-links">
+              {external && (
+                <a
+                  href={external}
+                  aria-label="External Link"
+                  className="external"
+                  target="_blank"
+                  rel="noreferrer">
+                  <Icon name="External" />
+                </a>
+              )}
+            </div>
+          </div>
+          <h3 className="project-title">
+            <a href={external} target="_blank" rel="noreferrer">
+              {title}
+            </a>
+          </h3>
+          <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
+        </header>
+      </div>
+    );
+  };
+
+  const projects = data.projects.edges.filter(({ node }) => node);
+  const certificates = data.certificates.edges.filter(({ node }) => node);
+
+  const firstSix = projects.slice(0, GRID_LIMIT);
+  const itemsToShow = showCertificates ? certificates : showMore ? projects : firstSix;
+
   return (
     <StyledProjectsSection>
-      <h2 ref={revealTitle}>Other Noteworthy Projects</h2>
+      <h2 className="numbered-heading" ref={revealTitle}>
+        {showCertificates ? 'Credential Vault' : 'Other Noteworthy Projects'}
+      </h2>
 
-      <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
-        view the archive
-      </Link>
+      {/* Archive link should only show when certificates are not shown, or you can adjust logic */}
+      {!showCertificates && (
+        <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
+          view the archive
+        </Link>
+      )}
 
-      <ul className="projects-grid">
-        {prefersReducedMotion ? (
-          <>
-            {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
-                <StyledProject key={i}>{projectInner(node)}</StyledProject>
-              ))}
-          </>
-        ) : (
-          <TransitionGroup component={null}>
-            {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
-                <CSSTransition
-                  key={i}
-                  classNames="fadeup"
-                  timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                  exit={false}>
-                  <StyledProject
-                    key={i}
-                    ref={el => (revealProjects.current[i] = el)}
-                    style={{
-                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                    }}>
-                    {projectInner(node)}
-                  </StyledProject>
-                </CSSTransition>
-              ))}
-          </TransitionGroup>
-        )}
-      </ul>
+      <TransitionGroup className="projects-grid">
+        {itemsToShow &&
+          itemsToShow.map(({ node }, i) => (
+            <CSSTransition
+              key={i}
+              classNames="fadeup"
+              timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
+              exit={false}>
+              <StyledProject
+                key={i}
+                ref={el => (revealProjects.current[i] = el)}
+                style={{
+                  transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
+                }}>
+                {showCertificates ? certificateInner(node) : projectInner(node)}
+              </StyledProject>
+            </CSSTransition>
+          ))}
+      </TransitionGroup>
 
-      <button className="more-button" onClick={() => setShowMore(!showMore)}>
-        Credentials Vault {showMore ? '<' : '>'}
+      <button className="more-button" onClick={() => setShowCertificates(!showCertificates)}>
+        {showCertificates ? 'Show Projects' : 'Credential Vault'}
       </button>
     </StyledProjectsSection>
   );
