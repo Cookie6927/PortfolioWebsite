@@ -2,7 +2,7 @@
 title: 'Design Thinking'
 date: '2024-06-01'
 external: 'https://coursera.org/verify/R4LRTSJ28RI6'
-image: '/certificates/images/designThinkingCer.png'
+image: '/Certificates/images/designThinkingCer.png'
 ---
 
 Successfully completed the <br>
