@@ -1,5 +1,7 @@
 import { css } from 'styled-components';
 
+import AguafinaScript from '@fonts/Aguafina/AguafinaScript-Regular.ttf';
+
 import CalibreRegularWoff from '@fonts/Calibre/Calibre-Regular.woff';
 import CalibreRegularWoff2 from '@fonts/Calibre/Calibre-Regular.woff2';
 import CalibreMediumWoff from '@fonts/Calibre/Calibre-Medium.woff';
@@ -23,6 +25,16 @@ import SFMonoRegularItalicWoff from '@fonts/SFMono/SFMono-RegularItalic.woff';
 import SFMonoRegularItalicWoff2 from '@fonts/SFMono/SFMono-RegularItalic.woff2';
 import SFMonoSemiboldItalicWoff from '@fonts/SFMono/SFMono-SemiboldItalic.woff';
 import SFMonoSemiboldItalicWoff2 from '@fonts/SFMono/SFMono-SemiboldItalic.woff2';
+
+const aguafina = `
+  @font-face {
+    font-family: 'Aguafina Script';
+    src: url(${AguafinaScript}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+`;
 
 const calibreNormalWeights = {
   400: [CalibreRegularWoff, CalibreRegularWoff2],
@@ -87,6 +99,7 @@ const sfMonoNormal = createFontFaces(sfMono);
 const sfMonoItalic = createFontFaces(sfMono, 'italic');
 
 const Fonts = css`
+  ${aguafina}
   ${calibreNormal + calibreItalic + sfMonoNormal + sfMonoItalic}
 `;
 
