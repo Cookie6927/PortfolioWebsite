@@ -319,7 +319,7 @@ const Projects = () => {
 
   return (
     <StyledProjectsSection>
-      <h2 className="numbered-heading" ref={revealTitle}>
+      <h2 className="heading-custom" ref={revealTitle}>
         {showCertificates ? 'Credential Vault' : 'Other Noteworthy Projects'}
       </h2>
 

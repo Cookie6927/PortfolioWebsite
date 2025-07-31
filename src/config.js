@@ -7,16 +7,16 @@ module.exports = {
       url: 'https://github.com/Cookie6927',
     },
     {
-      name: 'Instagram',
-      url: 'https://www.instagram.com/ojas.27',
-    },
-    {
       name: 'Twitter',
-      url: 'https://x.com/OjasMalwadkar',
+      url: 'https://www.salesforce.com/trailblazer/ojas27',
     },
     {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/ojas25/',
+    },
+    {
+      name: 'Instagram',
+      url: 'https://www.instagram.com/ojas.27',
     },
     // {
     //   name: 'Codepen',

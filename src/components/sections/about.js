@@ -34,6 +34,7 @@ const StyledText = styled.div`
       padding-left: 20px;
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
+      color: var(--green);
 
       &:before {
         content: '▹';
@@ -157,7 +158,7 @@ const About = () => {
               &amp; React.
             </p> */}
 
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>Here are a few technologies I’ve been focusing upon:</p>
           </div>
 
           <ul className="skills-list">
